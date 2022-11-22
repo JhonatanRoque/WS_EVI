@@ -8,6 +8,7 @@ function conexion(){
 
 	try{
 		$conn = new PDO('mysql:host='.$host.'; dbname='.$db, $user,$pwd, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+		echo "conn hec";
 	}catch(PDOException $e){
 		echo "<center><h2 style='color:green'>Error al tratar de conectar a la DB. ";
 		echo " consulte al soporte Técnico </h2></center>";
@@ -20,7 +21,7 @@ function conexion(){
 //Probar conexion
 conexion();
 
-/*
+/*ha";
 	by: Tec. Francisco Abarca
 	Modificado por: Tec. Francisco Abarca
 	Fecha modificación: 21/11/2022
