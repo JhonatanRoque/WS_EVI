@@ -2,12 +2,7 @@
 //Incluimos nuestro archivo crud
 include("escuelaCRUD.php");
 //Leemos todos los datos que nos envia la APP
-$nombre = htmlspecialchars($_POST['nombre'], ENT_QUOTES);
-$direccion = htmlspecialchars($_POST['direccion'], ENT_QUOTES);
-$telefono = htmlspecialchars($_POST['telefono'], ENT_QUOTES);
-$correo = htmlspecialchars($_POST['correo'], ENT_QUOTES);
-$contrasena = htmlspecialchars($_POST['contrasena'], ENT_QUOTES);
-$codigoSeguridad = htmlspecialchars($_POST['codigoS'], ENT_QUOTES);
+$nombre = "ITCA-Zacatecoluca";
 
 if(($nombre != "")){
     $resultado = escuela::checkName($nombre); //Realizamos la ejecución de nuestra funcion para registrar escuela, pasandole los datos que recibimos anteriormente
