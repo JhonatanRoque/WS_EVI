@@ -2,7 +2,7 @@
 //Incluimos nuestro archivo crud
 include("escuelaCRUD.php");
 //Leemos todos los datos que nos envia la APP
-$nombre = htmlspecialchars($_POST["nombre"], ENT_QUOTES);
+$nombre = $_POST["nombre"];
 $direccion = htmlspecialchars($_POST['direccion'], ENT_QUOTES);
 $telefono = htmlspecialchars($_POST['telefono'], ENT_QUOTES);
 $correo = htmlspecialchars($_POST['correo'], ENT_QUOTES);
