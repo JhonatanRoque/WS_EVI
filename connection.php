@@ -1,7 +1,7 @@
 <?php
 function conexion(){
 	$conn = null;
-	$host = "localhost";
+	$host = "196.96.56.204";
 	$db = "u701462728_db_evi"; //Aqui ira el nombre de nuestra DB
 	$user = "u701462728_admin"; //Aqui ira el nombre de nuestro usuario de BD
 	$pwd = "Jona1.than6"; //Contraseña de BD

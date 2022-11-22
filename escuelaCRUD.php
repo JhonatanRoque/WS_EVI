@@ -4,7 +4,7 @@ class escuela{
     //Metodo para registrar una escuela
     public static function regEscuela($nombre, $direccion, $telefono, $correo, $contrasena, $codigoSeguridad){
         include("connection.php"); //Incluimos nuestra conexion a la BD
-        $query = "INSERT INTO tbEscuela (nombre, direccion, telefono, correo, contrasena, codigoSeguridad) VALUES (?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
+        $query = "INSERT INTO tbEscuelas (nombre, direccion, telefono, correo, contrasena, codigoSeguridad) VALUES (?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
         try{
             $checkName = escuela::checkName($nombre);
             if($checkName > 0){
@@ -35,10 +35,9 @@ class escuela{
 
     //Metodo para comprobar si ya existe un empresa con dicho nombre
     public static function checkName($nombre){
-        include("connection.php");
-        $query = "SELECT nombre FROM ".$db.".tbEscuelas WHERE nombre = ?";
+        $query = "SELECT nombre FROM tbEscuelas WHERE nombre = ?";
         try{
-            
+            include("connection.php");
             $link = conexion();
             $comando = $link -> prepare ($query);
             $comando -> execute (array($nombre));
