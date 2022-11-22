@@ -4,7 +4,7 @@ class escuela{
     //Metodo para registrar una escuela
     public static function regEscuela($nombre, $direccion, $telefono, $correo, $contrasena, $codigoSeguridad){
         include("connection.php"); //Incluimos nuestra conexion a la BD
-        $query = "INSERT INTO tbEscuelas (nombre, direccion, telefono, correo, contrasena, codigoSeguridad) VALUES (?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
+        $query = "INSERT INTO tbEscuela (nombre, direccion, telefono, correo, contrasena, codigoSeguridad) VALUES (?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
         try{
             $checkName = escuela::checkName($nombre);
             if($checkName > 0){
@@ -22,9 +22,9 @@ class escuela{
             $comando->execute(array($nombre, $direccion, $telefono, $correo, $contrasena, $codigoSeguridad));
             $row = $comando->rowCount();
             if($row > 0){
-                return 1;
+                return $row;
             }else{
-                return $comando->queryString;
+                return $row;
             }
         }catch (PDOException $e){
             return $e;
