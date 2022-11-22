@@ -19,7 +19,7 @@ function conexion(){
 }
 
 //Probar conexion
-conexion();
+//conexion();
 
 /*ha";
 	by: Tec. Francisco Abarca
