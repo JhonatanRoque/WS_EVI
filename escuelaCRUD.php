@@ -24,7 +24,7 @@ class escuela{
             if($row > 0){
                 return 1;
             }else{
-                return 2;
+                return $row;
             }
         }catch (PDOException $e){
             return $e;
