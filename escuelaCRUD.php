@@ -33,7 +33,7 @@ class escuela{
 
     }
 
-    //Metodo para comprobar si ya existe un empresa con dicho nombre
+    //Metodo para comprobar si ya existe un cuenta con dicho nombre
     public static function checkName($nombre){
         $query = "SELECT nombre FROM tbEscuelas WHERE nombre = ?";
         try{
