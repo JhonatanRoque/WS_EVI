@@ -35,9 +35,10 @@ class escuela{
 
     //Metodo para comprobar si ya existe un empresa con dicho nombre
     public static function checkName($nombre){
-        $query = "SELECT nombre FROM tbEscuelas WHERE nombre = ?";
+        include("connection.php");
+        $query = "SELECT nombre FROM ".$db.".tbEscuelas WHERE nombre = ?";
         try{
-            include("connection.php");
+            
             $link = conexion();
             $comando = $link -> prepare ($query);
             $comando -> execute (array($nombre));
