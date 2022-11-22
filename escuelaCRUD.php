@@ -37,7 +37,6 @@ class escuela{
     public static function checkName($nombre){
         $query = "SELECT nombre FROM tbEscuelas WHERE nombre = ?";
         try{
-            include("connection.php");
             $link = conexion();
             $comando = $link -> prepare ($query);
             $comando -> execute (array($nombre));
