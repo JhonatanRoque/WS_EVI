@@ -34,7 +34,7 @@ class escuela{
     }
 
     //Metodo para comprobar si ya existe un empresa con dicho nombre
-    private static function checkName($nombre){
+    public static function checkName($nombre){
         $query = "SELECT nombre FROM tbEscuelas WHERE nombre = ?";
         try{
             $link = conexion();
