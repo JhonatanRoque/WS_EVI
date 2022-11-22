@@ -58,7 +58,7 @@ class escuela{
     public static function checkCorreo($correo){
         $query = "SELECT correo FROM tbEscuelas WHERE correo = ?";
         try{
-            include("connection.php");
+        
             $link = conexion();
             $comando = $link -> prepare ($query);
             $comando -> execute (array($correo));
