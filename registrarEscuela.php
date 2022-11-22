@@ -17,7 +17,7 @@ if(($nombre != "")){
         echo $json_string; //Imprimimos el mensaje en pantalla
     } else {
         header('Content-type: application/json; charset=utf-8');
-        $json_string = json_encode(array("estado" => 2,"mensaje" => "Ocurrio un problema, no se pudo registrar la escuela $nombre"));
+        $json_string = json_encode(array("estado" => 2,"mensaje" => $resultado));
 		echo $json_string;
     }
 }else {
