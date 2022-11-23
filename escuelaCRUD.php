@@ -100,7 +100,7 @@ class escuela{
 
 
         //Metodo para generar el codigo de verificación de la base de datos
-        public static function setCodigoV(){
+        private static function setCodigoV(){
             try{
                 $codigo = rand(100000, 999999);
                 $query = "UPDATE tbCodigos SET codigo = $codigo WHERE nombre = 'registro'";
@@ -118,7 +118,7 @@ class escuela{
         }
         //Metodo para obtener el codigo de verificación de la base de datos
         public static function getCodigoV(){
-            include("connection_db.php");
+            include("connection.php");
             try{
                 $bandera = escuela::setCodigoV();
                 if(!$bandera > 0 ){
