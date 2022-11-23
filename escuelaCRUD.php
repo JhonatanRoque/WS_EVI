@@ -79,8 +79,8 @@ class escuela{
 
     //Método para validar codigo de registro
     public static function checkCodigoRegistro($codigo){
-        include('connection_db.php');
-        $query = "SELECT codigoValidacion FROM tbCodigo WHERE codigoValidacion = ?";
+        include('connection.php');
+        $query = "SELECT codigo FROM tbCodigos WHERE nombre = 'registro' AND codigo = ?";
         try{
             $link = conexion();
             $comando = $link -> prepare ($query);
