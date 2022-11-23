@@ -26,7 +26,7 @@ $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Cabeceras adicionales
 $cabeceras .= 'To: ' . $destinatario . "\r\n";
-$cabeceras .= 'From: Francisco Abarca<' . $from . '>' . "\r\n";
+$cabeceras .= 'From: '. $from . "\r\n";
 $cabeceras .= 'Cc: ' . $CC .  "\r\n";
 if (!mail($destinatario, $asunto, $cuerpo, $headers)){
     header('Content-type: application/json; charset=utf-8');
