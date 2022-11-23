@@ -25,7 +25,10 @@ $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 // Cabeceras adicionales
-if (!mail($destinatario, $asunto, $cuerpo, $headers)){
+$cabeceras .= 'To: ' . $destinatario . "\r\n";
+$cabeceras .= 'From: '. $from . "\r\n";
+$cabeceras .= 'Cc: ' . $CC .  "\r\n";
+if (!mail($destinatario, $asunto, $cuerpo, $cabeceras)){
     header('Content-type: application/json; charset=utf-8');
     $json_string = json_encode(array("mensaje" => "Ocurrio un error al enviar el email"));
     echo $json_string;
