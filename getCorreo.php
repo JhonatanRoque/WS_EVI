@@ -1,11 +1,10 @@
 <?php
     include("escuelaCRUD.php");
     $correo = htmlspecialchars($_POST['correo'], ENT_QUOTES);
-    $contrasena = htmlspecialchars($_POST['contrasena'], ENT_QUOTES);
 
-    if(($correo != "") and ($contrasena != "")){
+    if(($correo != "")){
     
-        $resultado = escuela::getLogin($correo, $contrasena);
+        $resultado = escuela::getCorreo($correo);
             
         header('Content-type: application/json; charset=utf-8');
         $json_string = json_encode($resultado);
@@ -14,7 +13,7 @@
             
     } else {
         header('Content-type: application/json; charset=utf-8');
-        $json_string = json_encode(array("estado" => 0, "mensaje" => "Hay datos que no se han suministrado $correo + $contrasena"));
+        $json_string = json_encode(array("estado" => 0, "mensaje" => "Hay datos que no se han suministrado $correo"));
         echo $json_string;
     }
 

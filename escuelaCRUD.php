@@ -165,6 +165,20 @@ class escuela{
             }
 
         }
+
+        //Metodo para verificar si existe un correo
+        public static function getCorreo($correo){
+            include("connection.php");
+            $CheckEmail = escuela::checkCorreo($correo);
+            if($CheckEmail == 1){
+                $mensaje = "Existe una escuela con dicho correo";
+                return $mensaje;
+            }else {
+                $mensaje = "Correo de Escuela no diponible, escoja otro.";
+                return $mensaje;
+            }
+
+        }
     
 
 }
