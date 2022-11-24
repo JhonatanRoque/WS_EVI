@@ -7,7 +7,7 @@
         $resultado = escuela::getCorreo($correo);
             
         header('Content-type: application/json; charset=utf-8');
-        $json_string = json_encode($resultado);
+        $json_string = json_encode(array("estado" => 1, $resultado));
         echo $json_string;
         
             

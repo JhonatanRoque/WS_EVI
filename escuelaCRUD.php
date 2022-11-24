@@ -165,6 +165,29 @@ class escuela{
             }
 
         }
+        
+        //Metodo para obtener el codigo de verificación de la base de datos
+        public static function getCodigoRecContrasena(){
+            include("connection.php");
+            try{
+                $query = "SELECT codigo as codigo FROM tbCodigos WHERE nombre = 'registro'";
+                $link = conexion();
+                $comando = $link->prepare($query);
+                $comando->execute();
+                $row = $comando->fetch(PDO::FETCH_ASSOC);
+                $filasAfectadas = $comando->rowCount();
+                if( $filasAfectadas > 0){
+                    $resultado = $row['codigo'];
+                    return $resultado;
+                }else{
+                    //No se encontro ningun codigo para enviar
+                    return 0;
+                }
+            }catch(PDOException $e){
+                return $e;
+            }
+
+        }
 
         //Metodo para verificar si existe un correo
         public static function getCorreo($correo){
