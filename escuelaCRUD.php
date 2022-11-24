@@ -202,7 +202,28 @@ class escuela{
             }
 
         }
-    
+    //Método para recuperar contraseña, con el correo 
+    public static function getPassword($correo){
+        include ("connection.php");
+        $query = "SELECT contrasena FROM tbEscuelas WHERE correo = ?";
+        try{
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute(array($correo));
+            $row = $comando->fetch(PDO::FETCH_ASSOC);
+            $filasAfectadas = $comando->rowCount();
+            if( $filasAfectadas > 0){
+                $resultado = $row['contrasena'];
+                return $resultado;
+            }else{
+                //No se encontro ningun codigo para enviar
+                return 0;
+            }
+
+        }catch(PDOException $e){
+            return $e;
+        }        
+    }
 
 }
 
