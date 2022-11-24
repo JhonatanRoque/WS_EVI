@@ -197,7 +197,7 @@ class escuela{
                 $mensaje = "Existe una escuela con dicho correo";
                 return $mensaje;
             }else {
-                $mensaje = "Correo de Escuela no diponible, escoja otro.";
+                $mensaje = "No existe una escuela con dicho correo";
                 return $mensaje;
             }
 
