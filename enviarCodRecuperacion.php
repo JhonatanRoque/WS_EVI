@@ -8,6 +8,8 @@ $cuerpo = '<html><head></head><body>
 <h1>Código </h1> 
 <p> 
 <b>El código de recuperación de contraseña es: '.$codigo.'</b>.
+<br>
+<p>Ingrese el codigo en la app, para continuar con el proceso.</p>
 </p> 
 </body> 
 </html> '; 
