@@ -2,7 +2,7 @@
     include("escuelaCRUD.php");
     $nombre = htmlspecialchars($_POST['nombre'], ENT_QUOTES);
 
-    if(($correo != "")){
+    if(($nombre != "")){
     
         $resultado = escuela::getCorreoEscuela($nombre);
             
