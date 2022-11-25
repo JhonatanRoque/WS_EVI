@@ -2,7 +2,7 @@
 include("escuelaCRUD.php");
 
 $destinatario = $_POST['correo'];
-$asunto = "Codigo para recuperar contraseña";
+$asunto = "Contraseña para la cuenta $destinatario";
 $codigo = escuela::getPassword($destinatario);
 $cuerpo = '<html><head></head><body> 
 <h1>Código </h1> 

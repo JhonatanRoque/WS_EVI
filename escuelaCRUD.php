@@ -248,6 +248,29 @@ class escuela{
         }        
     }
 
+    //Método para recuperar correo mediante el nombre de la institución
+    public static function getCorreoEscuela($nombre){
+        include ("connection.php");
+        $query = "SELECT correo FROM tbEscuelas WHERE nombre = ?";
+        try{
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute(array($nombre));
+            $row = $comando->fetch(PDO::FETCH_ASSOC);
+            $filasAfectadas = $comando->rowCount();
+            if( $filasAfectadas > 0){
+                $resultado = $row['correo'];
+                return $resultado;
+            }else{
+                //No se encontro ningun codigo para enviar
+                return 0;
+            }
+
+        }catch(PDOException $e){
+            return $e;
+        } 
+    }
+
 }
 
 ?>
