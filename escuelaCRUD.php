@@ -103,7 +103,7 @@ class escuela{
     //Método para validar codigo de registro
     public static function checkCodigoRegistro($codigo){
         include('connection.php');
-        $query = "SELECT codigo FROM tbCodigos WHERE nombre = 'registro' AND codigo = ?";
+        $query = "SELECT codigo FROM tbCodigos WHERE codigo = ?";
         try{
             $link = conexion();
             $comando = $link -> prepare ($query);
@@ -167,13 +167,13 @@ class escuela{
         }
         
         //Metodo para obtener el codigo de verificación de la base de datos
-        public static function getCodigoRecContrasena(){
+        public static function getCodigoRecContrasena($correo){
             include("connection.php");
             try{
-                $query = "SELECT codigo as codigo FROM tbCodigos WHERE nombre = 'registro'";
+                $query = "SELECT codigoSeguridad as codigo FROM tbEscuelas WHERE correo = ?";
                 $link = conexion();
                 $comando = $link->prepare($query);
-                $comando->execute();
+                $comando->execute(array($correo));
                 $row = $comando->fetch(PDO::FETCH_ASSOC);
                 $filasAfectadas = $comando->rowCount();
                 if( $filasAfectadas > 0){

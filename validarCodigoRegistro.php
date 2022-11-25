@@ -1,6 +1,6 @@
 <?php 
 include("escuelaCRUD.php");
-
+$correo = htmlspecialchars($_POST['correo']);
 $codigo = $_POST['codigo'];
 
 if ($codigo != ""){
