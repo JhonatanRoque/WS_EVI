@@ -262,7 +262,7 @@ class escuela{
                 $resultado = $row['correo'];
                 return $resultado;
             }else{
-                //No se encontro ningun codigo para enviar
+                //No se encontro ningun correo para enviar
                 return 0;
             }
 
