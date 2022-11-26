@@ -6,7 +6,7 @@ class alumnos{
     public static function getLogin($correo, $contrasena){
     include("connection.php");
         // Consulta de la tabla alumnos para verificar si existe un alumno registrado con dichos datos.
-    $query = "SELECT * FROM tbMaestros WHERE  correo = ? and contrasena = ?"; //Sentencia SQL para consultar datos en la tabla
+    $query = "SELECT * FROM tbAlumnos WHERE  correo = ? and contrasena = ?"; //Sentencia SQL para consultar datos en la tabla
     try {    
           $link=conexion();    
           $comando = $link->prepare($query);
