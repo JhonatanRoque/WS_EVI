@@ -1,5 +1,5 @@
 <?php
-    include("maestro/maestroCRUD.php");
+    include("maestroCRUD.php");
     $correo = htmlspecialchars($_POST['correo'], ENT_QUOTES);
     $contrasena = htmlspecialchars($_POST['contrasena'], ENT_QUOTES);
 
