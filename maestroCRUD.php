@@ -16,7 +16,7 @@ class maestro{
           if( $filasAfectadas > 0){
             return $row;
           }
-          $mensaje = array("mensaje" =>"Correo o contraseña incorrectos, puede que no exista una escuela con dichas credenciales");
+          $mensaje = array("mensaje" =>"Correo o contraseña incorrectos, puede que no exista un registro con dichas credenciales");
           return $mensaje;
 
         } catch (PDOException $e) {
