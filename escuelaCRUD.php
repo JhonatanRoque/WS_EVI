@@ -314,17 +314,20 @@ class escuela{
         include("connection.php");
         $query = "SELECT * FROM tbMateria";
         try{
-            $link = conexion();
+            $link=conexion();    
             $comando = $link->prepare($query);
+            // Ejecutar sentencia preparada
             $comando->execute();
-            $row = $comando->fetch(PDO::FETCH_ASSOC);
-            $filasAfectadas = $comando->rowCount();
-            if( $filasAfectadas > 0){
-                return $row;
-            }else{
-                //No se encontro ninguna materia para mostrar
-                return 0;
-            }
+            while($result = $comando->fetch(PDO::FETCH_ASSOC))
+                {
+                                       
+                     $array [] = array('id' => $result['id'], 'nombre' => $result['nombre']);
+                    
+                }
+                
+                //array_map("utf8_encode", $array);
+  	            header('Content-type: application/json; charset=utf-8');
+  	            return print_r(json_encode($array), JSON_UNESCAPED_UNICODE);
         }catch (PDOException $e){
             return $e;
         }
