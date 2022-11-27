@@ -312,22 +312,23 @@ class escuela{
     //Método para registrar una materia por grado
     public static function getMateria(){
         include("connection.php");
-        $query = "SELECT * FROM tbMateria WHERE id = 1";
+        $query = "SELECT id, nombre FROM tbMateria WHERE id = 1";
         try{
-            $link=conexion();    
+            $link = conexion();
             $comando = $link->prepare($query);
-            // Ejecutar sentencia preparada
             $comando->execute();
-            while($result = $comando->fetch(PDO::FETCH_ASSOC))
-                {
-                                       
-                     $array [] = array('id' => $result['id'], 'nombre' => $result['nombre']);
-                    
-                }
+            $row = $comando->fetch(PDO::FETCH_ASSOC);
+            $filasAfectadas = $comando->rowCount();
+            if( $filasAfectadas > 0){
+                $resultado = "Se encontraron mas de un registro";
+            }else{
+                //No se encontro ningun codigo para enviar
+                return 0;
+            }
                 
                 //array_map("utf8_encode", $array);
   	            header('Content-type: application/json; charset=utf-8');
-  	            return print_r(json_encode($array), JSON_UNESCAPED_UNICODE);
+  	            return print_r(json_encode($resultado), JSON_UNESCAPED_UNICODE);
         }catch (PDOException $e){
             return $e;
         }
