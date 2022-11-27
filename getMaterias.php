@@ -1,7 +1,7 @@
 <?php
 include("escuelaCRUD.php");
 
-    $resultado == escuela::getMateria();
+    $resultado = escuela::getMateria();
     if($resultado){
         echo $resultado;
     }else{

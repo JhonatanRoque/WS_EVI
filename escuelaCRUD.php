@@ -313,7 +313,7 @@ class escuela{
     public static function getMateria() {
         include("connection.php");
         
-        $query = "SELECT * FROM tbMateriaswfrwsvdf;";
+        $query = "SELECT * FROM tbMateria;";
 
         try {
             $link=conexion();    
