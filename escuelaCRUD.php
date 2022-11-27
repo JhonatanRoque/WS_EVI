@@ -310,23 +310,33 @@ class escuela{
     }
 
     //Método para pbtener las matetrias
-    public static function getMateria(){
+    public static function obtenerCategorias() {
         include("connection.php");
-        $query = "SELECT * FROM tbAlumnos WHERE id = 1";
-        try{
+        
+        $query = "SELECT * FROM tbMateria";
+
+        try {
             $link=conexion();    
-          $comando = $link->prepare($query);
-          $comando->execute(array($correo,$contrasena));
-          $row = $comando->fetch(PDO::FETCH_ASSOC);
-          $filasAfectadas = $comando->rowCount();
-          if( $filasAfectadas > 0){
-            return $row;
-          }
+            $comando = $link->prepare($query);
+            // Ejecutar sentencia preparada
+            $comando->execute();
+            
+            $rows_array = array();
+            while($result = $comando->fetch(PDO::FETCH_ASSOC))
+                {
+                                       
+                     $array [] = array('id' => $result['id'], 'nombre' => $result['nombre']);
+                    
+                }
                 
-                
-        }catch (PDOException $e){
-            return $e;
+                //array_map("utf8_encode", $array);
+  	            header('Content-type: application/json; charset=utf-8');
+  	            return print_r(json_encode($array), JSON_UNESCAPED_UNICODE);
+  	           
+        } catch (PDOException $e) {
+            return false;
         }
+        
     }
 
     //Método para listar Grados
