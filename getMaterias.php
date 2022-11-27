@@ -4,7 +4,7 @@ include("escuelaCRUD.php");
 $escuelaID = htmlspecialchars($_POST['escuelaID'], ENT_QUOTES);
 
 if($escuelaID != ""){
-    $resultado == escuela::getGrados($escuelaID);
+    $resultado == escuela::getMateria();
     if($resultado > 0){
         echo $resultado;
     }else {

@@ -309,6 +309,27 @@ class escuela{
         }
     }
 
+    //Método para registrar una materia por grado
+    public static function getMateria(){
+        include("connection.php");
+        $query = "SELECT * FROM tbMateria ";
+        try{
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute();
+            $row = $comando->fetch(PDO::FETCH_ASSOC);
+            $filasAfectadas = $comando->rowCount();
+            if( $filasAfectadas > 0){
+                return $row;
+            }else{
+                //No se encontro ninguna materia para mostrar
+                return 0;
+            }
+        }catch (PDOException $e){
+            return $e;
+        }
+    }
+
     //Método para listar Grados
     public static function getGrados($empresaID){
         include("connection.php");
@@ -316,7 +337,7 @@ class escuela{
         try{
             $link = conexion();
             $comando = $link->prepare($query);
-            $comando->execute(array($nombre));
+            $comando->execute(array($empresaID));
             $row = $comando->rowCount();
             if($row > 0){
                 return $row;
