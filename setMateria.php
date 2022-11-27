@@ -5,14 +5,14 @@ include("escuelaCRUD.php");
 $nombre = htmlspecialchars($_POST['nombre'], ENT_QUOTES);
 
 if($nombre != ""){
-    $resultado = escuela::setGrado($nombre); //Realizamos la ejecución de nuestra funcion para registrar el grado, pasandole los datos que recibimos anteriormente
+    $resultado = escuela::setMateria($nombre); //Realizamos la ejecución de nuestra funcion para registrar la materia, pasandole los datos que recibimos anteriormente
     if ($resultado==1) { //Comprobamos que recibimos un 1 como señal de que se registro el grado
         header('Content-type: application/json; charset=utf-8'); //Encabezado para indicar al navegador, que debe mostrar la pagina en formato application/json
-        $json_string = json_encode(array("estado" => 1,"mensaje" => "Grado registrado correctamente.")); //Preparamos el mensaje a enviar como respuesta
+        $json_string = json_encode(array("estado" => 1,"mensaje" => "Materia registrada correctamente.")); //Preparamos el mensaje a enviar como respuesta
         echo $json_string; //Imprimimos el mensaje en pantalla
     } else {
         header('Content-type: application/json; charset=utf-8');
-        $json_string = json_encode(array("estado" => 2,"mensaje" => "No se pudo registrar el grado, verifique los datos"));
+        $json_string = json_encode(array("estado" => 2,"mensaje" => "No se pudo registrar la materia $nombre, verifique los datos"));
 		echo $json_string;
     }
 }else {

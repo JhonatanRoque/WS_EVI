@@ -290,6 +290,25 @@ class escuela{
         }
     }
 
+    //Método para registrar materias
+    public static function setMateria($nombre){
+        include("connection.php");
+        $query = "INSERT INTO tbMateria(nombre) VALUES (?)";
+        try{
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute(array($nombre));
+            $row = $comando->rowCount();
+            if($row > 0){
+                return $row;
+            }else{
+                return $row;
+            }
+        }catch (PDOException $e){
+            return $e;
+        }
+    }
+
     //Método para listar Grados
     public static function getGrados($empresaID){
         include("connection.php");
