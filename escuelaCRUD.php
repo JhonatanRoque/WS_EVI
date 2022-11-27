@@ -290,6 +290,25 @@ class escuela{
         }
     }
 
+    //Método para listar Grados
+    public static function getGrados($empresaID){
+        include("connection.php");
+        $query = "SELECT FROM tbGrado as tbG INNER JOIN tbMateriaGrado as tbMG ON tbG.id = tbMG.gradoID INNER JOIN tbMateriaMaestros as tbMM ON tbMG.materiaMaestroID = tbMM.id INNER JOIN tbMaestros as tbM ON tbMM.maestroID = tbM.id WHERE tbM.escuelaID = ?";
+        try{
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute(array($nombre));
+            $row = $comando->rowCount();
+            if($row > 0){
+                return $row;
+            }else{
+                return $row;
+            }
+        }catch (PDOException $e){
+            return $e;
+        }
+    }
+
 }
 
 ?>
