@@ -309,26 +309,21 @@ class escuela{
         }
     }
 
-    //Método para registrar una materia por grado
+    //Método para pbtener las matetrias
     public static function getMateria(){
         include("connection.php");
-        $query = "SELECT id, nombre FROM tbMateria WHERE id = 1";
+        $query = "SELECT * FROM tbAlumnos WHERE id = 1";
         try{
-            $link = conexion();
-            $comando = $link->prepare($query);
-            $comando->execute();
-            $row = $comando->fetch(PDO::FETCH_ASSOC);
-            $filasAfectadas = $comando->rowCount();
-            if( $filasAfectadas > 0){
-                $resultado = "Se encontraron mas de un registro";
-            }else{
-                //No se encontro ningun codigo para enviar
-                return 0;
-            }
+            $link=conexion();    
+          $comando = $link->prepare($query);
+          $comando->execute(array($correo,$contrasena));
+          $row = $comando->fetch(PDO::FETCH_ASSOC);
+          $filasAfectadas = $comando->rowCount();
+          if( $filasAfectadas > 0){
+            return $row;
+          }
                 
-                //array_map("utf8_encode", $array);
-  	            header('Content-type: application/json; charset=utf-8');
-  	            return print_r(json_encode($resultado), JSON_UNESCAPED_UNICODE);
+                
         }catch (PDOException $e){
             return $e;
         }
@@ -337,7 +332,7 @@ class escuela{
     //Método para listar Grados
     public static function getGrados($empresaID){
         include("connection.php");
-        $query = "SELECT FROM tbGrado as tbG INNER JOIN tbMateriaGrado as tbMG ON tbG.id = tbMG.gradoID INNER JOIN tbMateriaMaestros as tbMM ON tbMG.materiaMaestroID = tbMM.id INNER JOIN tbMaestros as tbM ON tbMM.maestroID = tbM.id WHERE tbM.escuelaID = ?";
+        $query = "SELECT * FROM tbGrado as tbG INNER JOIN tbMateriaGrado as tbMG ON tbG.id = tbMG.gradoID INNER JOIN tbMateriaMaestros as tbMM ON tbMG.materiaMaestroID = tbMM.id INNER JOIN tbMaestros as tbM ON tbMM.maestroID = tbM.id WHERE tbM.escuelaID = ?";
         try{
             $link = conexion();
             $comando = $link->prepare($query);
