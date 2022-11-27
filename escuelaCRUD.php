@@ -312,7 +312,7 @@ class escuela{
     //Método para registrar una materia por grado
     public static function getMateria(){
         include("connection.php");
-        $query = "SELECT * FROM tbMateria";
+        $query = "SELECT * FROM tbMateria WHERE id = 1";
         try{
             $link=conexion();    
             $comando = $link->prepare($query);
