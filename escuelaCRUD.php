@@ -271,6 +271,25 @@ class escuela{
         } 
     }
 
+    //Método para registrar grados
+    public static function setGrado($nombre){
+        include("connection.php");
+        $query = "INSERT INTO tbGrado(nombre) VALUES (?)";
+        try{
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute(array($nombre));
+            $row = $comando->rowCount();
+            if($row > 0){
+                return $row;
+            }else{
+                return $row;
+            }
+        }catch (PDOException $e){
+            return $e;
+        }
+    }
+
 }
 
 ?>
