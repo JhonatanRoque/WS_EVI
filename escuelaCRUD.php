@@ -334,7 +334,7 @@ class escuela{
   	            return print_r(json_encode($array), JSON_UNESCAPED_UNICODE);
   	           
         } catch (PDOException $e) {
-            return false;
+            return $e;
         }
         
     }
