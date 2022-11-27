@@ -310,7 +310,7 @@ class escuela{
     }
 
     //Método para pbtener las matetrias
-    public static function obtenerCategorias() {
+    public static function getMateria() {
         include("connection.php");
         
         $query = "SELECT * FROM tbMateria";
