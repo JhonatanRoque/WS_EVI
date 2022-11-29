@@ -386,7 +386,7 @@ class escuela{
         try{
             $link=conexion();    
           $comando = $link->prepare($query);
-          $comando->execute(array($correo,$contrasena));
+          $comando->execute(array($empresaID));
           $row = $comando->fetch(PDO::FETCH_ASSOC);
           $filasAfectadas = $comando->rowCount();
           if( $filasAfectadas > 0){
