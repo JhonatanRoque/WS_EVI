@@ -471,7 +471,7 @@ class escuela{
           if( $filasAfectadas > 0){
             return $filasAfectadas;
           }
-          $mensaje = array("mensaje" =>"0");
+          $mensaje = 0;
           return $mensaje;
 
         }catch (PDOException $e){
