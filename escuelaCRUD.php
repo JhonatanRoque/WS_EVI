@@ -387,7 +387,7 @@ class escuela{
             $link=conexion();    
             $comando = $link->prepare($query);
             // Ejecutar sentencia preparada
-            $comando->execute(array($escuelaID));
+            $comando->execute(array($escuelaID)); 
             
             $rows_array = array();
             while($result = $comando->fetch(PDO::FETCH_ASSOC))
@@ -400,6 +400,36 @@ class escuela{
                 //array_map("utf8_encode", $array);
   	            header('Content-type: application/json; charset=utf-8');
   	            return print_r(json_encode($array), JSON_UNESCAPED_UNICODE);
+  	           
+        } catch (PDOException $e) {
+            return $e;
+        }
+        
+    }
+
+    //Método para obtener la cantidad de maestros en la escuela 
+    public static function getMaestrosInt($escuelaID) {
+        include("connection.php");
+        
+        $query = "SELECT * FROM tbMaestros WHERE escuelaID = ?;";
+
+        try {
+            $link=conexion();    
+            $comando = $link->prepare($query);
+            // Ejecutar sentencia preparada
+            $comando->execute(array($escuelaID)); 
+            
+            $row = $comando->rowCount();
+            if($row > 0){
+                //array_map("utf8_encode", $array);
+                header('Content-type: application/json; charset=utf-8');
+                return print_r(json_encode($row), JSON_UNESCAPED_UNICODE);
+            }else {
+                return 0;
+            }
+           
+                
+              
   	           
         } catch (PDOException $e) {
             return $e;
