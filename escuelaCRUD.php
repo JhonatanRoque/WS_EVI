@@ -365,7 +365,7 @@ class escuela{
             try{
                 $link = conexion();
                 $comando = $link->prepare($query);
-                $comando->execute(array($maestroID));
+                $comando->execute(array($maestroID, $materiaID));
                 $row = $comando->rowCount();
                 if($row > 0){
                     return $row;
@@ -377,7 +377,35 @@ class escuela{
             }
         }
 
-    
+    //Metodo para obtener lista de maestros
+    public static function getMaestros() {
+        include("connection.php");
+        
+        $query = "SELECT * FROM tbMaestros;";
+
+        try {
+            $link=conexion();    
+            $comando = $link->prepare($query);
+            // Ejecutar sentencia preparada
+            $comando->execute();
+            
+            $rows_array = array();
+            while($result = $comando->fetch(PDO::FETCH_ASSOC))
+                {
+                                       
+                     $array [] = array('id' => $result['id'], 'nombre' => $result['nombre'], 'correo' => $result['correo']);
+                    
+                }
+                
+                //array_map("utf8_encode", $array);
+  	            header('Content-type: application/json; charset=utf-8');
+  	            return print_r(json_encode($array), JSON_UNESCAPED_UNICODE);
+  	           
+        } catch (PDOException $e) {
+            return $e;
+        }
+        
+    }
 
     //Método para listar Grados
     public static function getGrados($empresaID){
