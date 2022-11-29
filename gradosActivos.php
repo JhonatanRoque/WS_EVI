@@ -5,7 +5,6 @@ $escuelaID = $_POST['escuelaID'];
 
     $resultado = escuela::getGradosInt($escuelaID);
     if($resultado){
-        echo $resultado;
         header('Content-type: application/json; charset=utf-8');
         $json_string = json_encode(array("grados" => $resultado));
         echo $json_string;
