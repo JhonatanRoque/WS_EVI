@@ -384,15 +384,17 @@ class escuela{
         include("connection.php");
         $query = "SELECT tbG.id as id, tbG.nombre as nombre FROM tbGrado as tbG INNER JOIN tbMateriaGrado as tbMG ON tbG.id = tbMG.gradoID INNER JOIN tbMateriaMaestros as tbMM ON tbMG.materiaMaestroID = tbMM.id INNER JOIN tbMaestros as tbM ON tbMM.maestroID = tbM.id WHERE tbM.escuelaID = ?";
         try{
-            $link = conexion();
-            $comando = $link->prepare($query);
-            $comando->execute(array($empresaID));
-            $row = $comando->rowCount();
-            if($row > 0){
-                return $row;
-            }else{
-                return $row;
-            }
+            $link=conexion();    
+          $comando = $link->prepare($query);
+          $comando->execute(array($correo,$contrasena));
+          $row = $comando->fetch(PDO::FETCH_ASSOC);
+          $filasAfectadas = $comando->rowCount();
+          if( $filasAfectadas > 0){
+            return $row;
+          }
+          $mensaje = array("mensaje" =>"0");
+          return $mensaje;
+
         }catch (PDOException $e){
             return $e;
         }
