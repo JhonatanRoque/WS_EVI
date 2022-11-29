@@ -378,16 +378,16 @@ class escuela{
         }
 
     //Metodo para obtener lista de maestros
-    public static function getMaestros() {
+    public static function getMaestros($escuelaID) {
         include("connection.php");
         
-        $query = "SELECT * FROM tbMaestros;";
+        $query = "SELECT * FROM tbMaestros WHERE escuelaID = ?;";
 
         try {
             $link=conexion();    
             $comando = $link->prepare($query);
             // Ejecutar sentencia preparada
-            $comando->execute();
+            $comando->execute(array($escuelaID));
             
             $rows_array = array();
             while($result = $comando->fetch(PDO::FETCH_ASSOC))
