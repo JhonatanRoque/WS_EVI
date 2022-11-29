@@ -13,7 +13,7 @@ class escuela{
             }
             $CheckEmail = escuela::checkCorreo($correo);
             if($CheckEmail == 1){
-                $mensaje = "Correo de Escuela no diponible, escoja otro.";
+                $mensaje = "Correo de Escuela no diponible, escoja otro .";
                 return $mensaje;
             }
             
@@ -342,11 +342,11 @@ class escuela{
     //Método para asignar materia con grado
     public static function setMateriaGrado($nombre){
         include("connection.php");
-        $query = "INSERT INTO tbMateria(nombre) VALUES (?)";
+        $query = "INSERT INTO tbMateriaGrado() VALUES (?)";
         try{
             $link = conexion();
             $comando = $link->prepare($query);
-            $comando->execute(array($nombre));
+            $comando->execute(array());
             $row = $comando->rowCount();
             if($row > 0){
                 return $row;
@@ -357,6 +357,25 @@ class escuela{
             return $e;
         }
     }
+
+        //Método para asignar materia con un maestro
+        public static function setMateriaMaestro($maestroID, $materiaID){
+            include("connection.php");
+            $query = "INSERT INTO tbMateriaMaestros(maestroID, materiaID) VALUES (?, ?)";
+            try{
+                $link = conexion();
+                $comando = $link->prepare($query);
+                $comando->execute(array($maestroID));
+                $row = $comando->rowCount();
+                if($row > 0){
+                    return $row;
+                }else{
+                    return $row;
+                }
+            }catch (PDOException $e){
+                return $e;
+            }
+        }
 
     
 
