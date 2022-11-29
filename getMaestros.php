@@ -1,7 +1,9 @@
 <?php
 include("escuelaCRUD.php");
 
-    $resultado = escuela::getMaestros();
+$escuelaID = $_POST['escuelaID'];
+
+    $resultado = escuela::getMaestros($escuelaID);
     if($resultado){
         echo $resultado;
     }else{
