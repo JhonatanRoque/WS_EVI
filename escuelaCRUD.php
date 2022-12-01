@@ -482,7 +482,7 @@ class escuela{
     //Método para listar materias
     public static function getMateriaInt($empresaID){
         include("connection.php");
-        $query = "SELECT tbMM.id as id, tbNN.materiaID as nombre FROM tbGrado as tbG INNER JOIN tbMateriaGrado as tbMG ON tbG.id = tbMG.gradoID  INNER JOIN tbMateriaMaestros as tbMM ON tbMG.materiaMaestroID = tbMM.id INNER JOIN tbMaestros as tbM ON tbMM.maestroID = tbM.id WHERE tbM.escuelaID = ?";
+        $query = "SELECT tbMM.id as id, tbMM.materiaID as nombre FROM tbGrado as tbG INNER JOIN tbMateriaGrado as tbMG ON tbG.id = tbMG.gradoID  INNER JOIN tbMateriaMaestros as tbMM ON tbMG.materiaMaestroID = tbMM.id INNER JOIN tbMaestros as tbM ON tbMM.maestroID = tbM.id WHERE tbM.escuelaID = ?";
         try{
             $link=conexion();    
           $comando = $link->prepare($query);
