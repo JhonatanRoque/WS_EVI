@@ -23,6 +23,82 @@ class maestro{
             return -1;
         }
     }
+
+     //Metodo para registrar un maestro
+     public static function regmaestro($nombre, $apellido, $correo, $direccion, $telefono, $escuelaID, $facebook, $whatsapp, $contrasena){
+        include("connection.php"); //Incluimos nuestra conexion a la BD
+        $query = "INSERT INTO tbMaestros (nombre, apellido, correo, direccion, telefono, escuelaID, facebook, whatsapp contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
+        try{
+            $checkPhone = maestro::checkPhone($telefono);
+            if($checkPhone > 0){
+                $mensaje = "Npúmero de telefono no diponible, escoja otro.";
+                return $mensaje;
+            }
+            $CheckEmail = maestro::checkCorreo($correo);
+            if($CheckEmail == 1){
+                $mensaje = "Correo de maestro no diponible, escoja otro .";
+                return $mensaje;
+            }
+            
+            $link = conexion();
+            $comando = $link->prepare($query);
+            $comando->execute(array($nombre, $direccion, $telefono, $correo, $contrasena, $codigoSeguridad));
+            $row = $comando->rowCount();
+            if($row > 0){
+                return $row;
+            }else{
+                return $row;
+            }
+        }catch (PDOException $e){
+            return $e;
+        }
+       
+
+    }
+
+     //Metodo para comprobar si ya existe un cuenta con dicho nombre
+     public static function checkPhone($telefono){
+        $query = "SELECT nombre FROM tbMaestros WHERE telefono = ?";
+        try{
+            $link = conexion();
+            $comando = $link -> prepare ($query);
+            $comando -> execute (array($telefono));
+            $row = $comando -> rowCount();
+            if($row > 0){
+                //significa que encontro un maestroa que ya tiene ese telefono
+                //No permite crear cuenta si esto sucede
+                return 1;
+            }else{
+                //No encontro ninguna escuela con dicho nombre 
+                //puede continuar con el registro 
+                return 0;
+            }
+        }catch(PDOException $e){
+            return $e;
+        }
+    }
+
+    public static function checkCorreo($correo){
+        $query = "SELECT correo FROM tbMaestros WHERE correo = ?";
+        try{
+        
+            $link = conexion();
+            $comando = $link -> prepare ($query);
+            $comando -> execute (array($correo));
+            $row = $comando -> rowCount();
+            if($row > 0){
+                //significa que encontro una maestro que ya tiene ese correo
+                //No permite crear registro si esto sucede
+                return 1;
+            }else{
+                //No encontro ningun maestro con dicho correo
+                //puede continuar con el registro 
+                return 0;
+            }
+        }catch(PDOException $e){
+            return $e;
+        }
+    }
 }
 
 ?>
