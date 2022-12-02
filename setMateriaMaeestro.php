@@ -9,7 +9,7 @@ if(($maestroID != "") && ($materiaID != "")){
     $resultado = escuela::setMateriaMaestro($maestroID, $materiaID); //Realizamos la ejecución de nuestra funcion para registrar la materia, pasandole los datos que recibimos anteriormente
     if ($resultado==1) { //Comprobamos que recibimos un 1 como señal de que se registro el grado
         header('Content-type: application/json; charset=utf-8'); //Encabezado para indicar al navegador, que debe mostrar la pagina en formato application/json
-        $json_string = json_encode(array("estado" => 1,"mensaje" => "Materia registrada correctamente.")); //Preparamos el mensaje a enviar como respuesta
+        $json_string = json_encode(array("estado" => 1,"mensaje" => "Materia asignada correctamente.")); //Preparamos el mensaje a enviar como respuesta
         echo $json_string; //Imprimimos el mensaje en pantalla
     } else {
         header('Content-type: application/json; charset=utf-8');
