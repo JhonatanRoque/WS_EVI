@@ -142,6 +142,28 @@ class maestro{
            
     
         }
+
+        //Metodo para eliminar maestro 
+        public static function eliminarmaestro($id){
+            include("connection.php"); //Incluimos nuestra conexion a la BD
+            $query = "DELETE tbMaestros WHERE id = ?"; //Consulta que realizara la BD
+            try{
+              
+                $link = conexion();
+                $comando = $link->prepare($query);
+                $comando->execute(array($id));
+                $row = $comando->rowCount();
+                if($row > 0){
+                    return $row;
+                }else{
+                    return $row;
+                }
+            }catch (PDOException $e){
+                return $e;
+            }
+           
+    
+        }
 }
 
 ?>
