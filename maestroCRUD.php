@@ -99,6 +99,27 @@ class maestro{
             return $e;
         }
     }
+
+    public static function getMaestroIndividual($id){
+        include("connection.php");
+            // Consulta de la tabla maestros para verificar si existe un maestro registrado con dichos datos.
+        $query = "SELECT * FROM tbMaestros WHERE  id = ?"; //Sentencia SQL para consultar datos en la tabla
+        try {    
+              $link=conexion();    
+              $comando = $link->prepare($query);
+              $comando->execute(array($id));
+              $row = $comando->fetch(PDO::FETCH_ASSOC);
+              $filasAfectadas = $comando->rowCount();
+              if( $filasAfectadas > 0){
+                return $row;
+              }
+              $mensaje = array("mensaje" =>"Correo o contraseña incorrectos, puede que no exista un registro con dichas credenciales");
+              return $mensaje;
+    
+            } catch (PDOException $e) {
+                return -1;
+            }
+        }
 }
 
 ?>
