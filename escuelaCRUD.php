@@ -500,6 +500,9 @@ class escuela{
         }
     }
 
+    //Método para asignar maestro materia
+    
+
 }
 
 /*
