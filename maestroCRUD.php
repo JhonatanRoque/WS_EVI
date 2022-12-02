@@ -120,6 +120,28 @@ class maestro{
                 return -1;
             }
         }
+
+        //Metodo para actualizar datos de maestro 
+        public static function actualizarmaestro($id, $nombre, $apellido, $correo, $direccion, $telefono, $escuelaID, $facebook, $whatsapp, $contrasena){
+            include("connection.php"); //Incluimos nuestra conexion a la BD
+            $query = "UPDATE tbMaestros  SET nombre = ?, apellido = ?, correo = ?, direccion = ?, telefono = ?, escuelaID = ?, facebook = ?, whatsapp = ?, contrasena = ? WHERE id = ?"; //Consulta que realizara la BD
+            try{
+              
+                $link = conexion();
+                $comando = $link->prepare($query);
+                $comando->execute(array($nombre, $apellido, $correo, $direccion, $telefono, $escuelaID, $facebook, $whatsapp, $contrasena, $id));
+                $row = $comando->rowCount();
+                if($row > 0){
+                    return $row;
+                }else{
+                    return $row;
+                }
+            }catch (PDOException $e){
+                return $e;
+            }
+           
+    
+        }
 }
 
 ?>
