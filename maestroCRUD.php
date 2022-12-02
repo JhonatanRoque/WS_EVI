@@ -42,7 +42,7 @@ class maestro{
             
             $link = conexion();
             $comando = $link->prepare($query);
-            $comando->execute(array($nombre, $direccion, $telefono, $correo, $contrasena, $codigoSeguridad));
+            $comando->execute(array($nombre, $apellido, $correo, $direccion, $telefono, $escuelaID, $facebook, $whatsapp, $contrasena));
             $row = $comando->rowCount();
             if($row > 0){
                 return $row;
