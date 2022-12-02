@@ -146,7 +146,7 @@ class maestro{
         //Metodo para eliminar maestro 
         public static function eliminarmaestro($id){
             include("connection.php"); //Incluimos nuestra conexion a la BD
-            $query = "DELETE tbMaestros WHERE id = ?"; //Consulta que realizara la BD
+            $query = "DELETE FROM tbMaestros WHERE id = ?"; //Consulta que realizara la BD
             try{
               
                 $link = conexion();
