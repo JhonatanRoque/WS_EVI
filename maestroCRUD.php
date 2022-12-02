@@ -27,7 +27,7 @@ class maestro{
      //Metodo para registrar un maestro
      public static function regmaestro($nombre, $apellido, $correo, $direccion, $telefono, $escuelaID, $facebook, $whatsapp, $contrasena){
         include("connection.php"); //Incluimos nuestra conexion a la BD
-        $query = "INSERT INTO tbMaestros (nombre, apellido, correo, direccion, telefono, escuelaID, facebook, whatsapp contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
+        $query = "INSERT INTO tbMaestros (nombre, apellido, correo, direccion, telefono, escuelaID, facebook, whatsapp,contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; //Consulta que realizara la BD
         try{
             $checkPhone = maestro::checkPhone($telefono);
             if($checkPhone > 0){
